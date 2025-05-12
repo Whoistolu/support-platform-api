@@ -33,7 +33,9 @@ gem "graphql"
 
 gem "devise"
 
-gem 'rspec-rails'
+gem "rspec-rails"
+
+gem "image_processing"
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
