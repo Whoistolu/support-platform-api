@@ -37,6 +37,8 @@ gem "rspec-rails"
 
 gem "image_processing"
 
+gem "active_storage_validations"
+
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
