@@ -31,6 +31,8 @@ gem "cancancan"
 
 gem "graphql"
 
+gem "devise"
+
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
