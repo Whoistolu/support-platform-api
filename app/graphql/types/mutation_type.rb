@@ -2,6 +2,8 @@
 
 module Types
   class MutationType < Types::BaseObject
+    field :create_comment, mutation: Mutations::CreateComment
+    field :create_support_ticket, mutation: Mutations::CreateSupportTicket
     # TODO: remove me
     field :test_field, String, null: false,
       description: "An example field added by the generator"
