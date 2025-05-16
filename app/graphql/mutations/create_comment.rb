@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Mutations
   class CreateComment < BaseMutation
     argument :support_ticket_id, ID, required: true
@@ -8,7 +6,7 @@ module Mutations
     field :comment, Types::CommentType, null: true
     field :errors, [String], null: false
 
-    def resolve(support_ticket_id:, body:)
+   def resolve(support_ticket_id:, body:)
       user = context[:current_user]
       return { comment: nil, errors: ["Authentication required"] } unless user
 
@@ -16,6 +14,8 @@ module Mutations
       return { comment: nil, errors: ["Support ticket not found"] } unless ticket
 
       comment = ticket.comments.build(user: user, body: body)
+
+      authorize! :create, comment
 
       if comment.save
         { comment: comment, errors: [] }
