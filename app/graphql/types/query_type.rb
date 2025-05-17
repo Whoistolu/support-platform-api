@@ -1,31 +1,25 @@
-# frozen_string_literal: true
-
 module Types
   class QueryType < Types::BaseObject
-    field :node, Types::NodeType, null: true, description: "Fetches an object given its ID." do
-      argument :id, ID, required: true, description: "ID of the object."
+    field :support_tickets, [Types::SupportTicketType], null: false
+
+    def support_tickets
+      user = context[:current_user]
+      raise GraphQL::ExecutionError, "Not authenticated" unless user
+
+      tickets = user.agent? ? SupportTicket.all : SupportTicket.where(user_id: user.id)
+      tickets.select { |ticket| authorize!(:read, ticket); true }
     end
 
-    def node(id:)
-      context.schema.object_from_id(id, context)
+    field :support_ticket, Types::SupportTicketType, null: true do
+      argument :id, ID, required: true
     end
 
-    field :nodes, [Types::NodeType, null: true], null: true, description: "Fetches a list of objects given a list of IDs." do
-      argument :ids, [ID], required: true, description: "IDs of the objects."
-    end
+    def support_ticket(id:)
+      ticket = SupportTicket.find_by(id: id)
+      raise GraphQL::ExecutionError, "Ticket not found" unless ticket
 
-    def nodes(ids:)
-      ids.map { |id| context.schema.object_from_id(id, context) }
-    end
-
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+      authorize!(:read, ticket)
+      ticket
     end
   end
 end
