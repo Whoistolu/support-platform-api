@@ -1,4 +1,4 @@
-class CreateSupportTickets < ActiveRecord::Migration[8.0]
+class CreateSupportTickets < ActiveRecord::Migration[7.1]
   def change
     create_table :support_tickets do |t|
       t.string :title
