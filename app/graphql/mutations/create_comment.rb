@@ -4,14 +4,14 @@ module Mutations
     argument :body, String, required: true
 
     field :comment, Types::CommentType, null: true
-    field :errors, [String], null: false
+    field :errors, [ String ], null: false
 
    def resolve(support_ticket_id:, body:)
       user = context[:current_user]
-      return { comment: nil, errors: ["Authentication required"] } unless user
+      return { comment: nil, errors: [ "Authentication required" ] } unless user
 
       ticket = SupportTicket.find_by(id: support_ticket_id)
-      return { comment: nil, errors: ["Support ticket not found"] } unless ticket
+      return { comment: nil, errors: [ "Support ticket not found" ] } unless ticket
 
       comment = ticket.comments.build(user: user, body: body)
 

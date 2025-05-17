@@ -7,7 +7,7 @@ class SupportTicket < ApplicationRecord
 
   validates :attachments,
   blob: {
-    content_type: ['image/png', 'image/jpg', 'image/jpeg', 'application/pdf'],
+    content_type: [ "image/png", "image/jpg", "image/jpeg", "application/pdf" ],
     size_range: 1..10.megabytes
   }
 

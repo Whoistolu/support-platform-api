@@ -9,9 +9,9 @@ module Types
 
       # Relations
       field :user, Types::UserType, null: false
-      field :comments, [Types::CommentType], null: false
+      field :comments, [ Types::CommentType ], null: false
 
       # File attachments – optional, can expose as URLs or metadata
-      field :attachments, [Types::ActiveStorageAttachmentType], null: false
+      field :attachments, [ Types::ActiveStorageAttachmentType ], null: false
     end
 end

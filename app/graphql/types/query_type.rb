@@ -1,6 +1,6 @@
 module Types
   class QueryType < Types::BaseObject
-    field :support_tickets, [Types::SupportTicketType], null: false
+    field :support_tickets, [ Types::SupportTicketType ], null: false
 
     def support_tickets
       user = context[:current_user]
