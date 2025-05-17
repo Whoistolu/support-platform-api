@@ -1,0 +1,6 @@
+:concurrency: 5
+:schedule:
+  daily_ticket_reminder_job:
+    cron: "0 8 * * *"
+    class: "DailyTicketReminderJob"
+    queue: default
