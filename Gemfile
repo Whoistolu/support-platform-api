@@ -41,8 +41,6 @@ gem "active_storage_validations"
 
 gem "devise-jwt"
 
-gem "dotenv-rails", groups: [:development, :test]
-
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
@@ -64,4 +62,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "dotenv-rails"
 end
