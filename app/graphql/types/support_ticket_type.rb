@@ -9,13 +9,13 @@ module Types
 
     # Relations
     field :user, Types::UserType, null: false
-    field :comments, [Types::CommentType], null: false
+    field :comments, [ Types::CommentType ], null: false
 
     # Active Storage
-    field :attachments, [Types::ActiveStorageAttachmentType], null: false
+    field :attachments, [ Types::ActiveStorageAttachmentType ], null: false
 
     # URLs for client use
-    field :attachment_urls, [String], null: true
+    field :attachment_urls, [ String ], null: true
 
     def attachment_urls
       object.attachments.map do |file|

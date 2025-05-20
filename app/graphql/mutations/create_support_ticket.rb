@@ -2,14 +2,14 @@ module Mutations
   class CreateSupportTicket < BaseMutation
     argument :title, String, required: true
     argument :description, String, required: true
-    argument :attachment_ids, [String], required: false
+    argument :attachment_ids, [ String ], required: false
 
     field :support_ticket, Types::SupportTicketType, null: true
     field :errors, [ String ], null: false
 
     def resolve(title:, description:, attachment_ids: [])
       user = context[:current_user]
-      return { support_ticket: nil, errors: ["Authentication required"] } unless user
+      return { support_ticket: nil, errors: [ "Authentication required" ] } unless user
 
       ticket = user.support_tickets.build(title: title, description: description)
       authorize! :create, ticket
