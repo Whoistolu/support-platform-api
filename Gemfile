@@ -41,6 +41,8 @@ gem "active_storage_validations"
 
 gem "devise-jwt"
 
+gem "dotenv-rails", groups: [:development, :test]
+
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
